@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour {
 
 	public float moveSpeed = 5f;
 	SpriteRenderer mySprite;
-
+    public int life = 100;
 	float screenWidth;
 	Vector3 moveVelocity;
 
@@ -27,4 +27,10 @@ public class PlayerController : MonoBehaviour {
 		if(transform.position.x > screenWidth)
 			transform.position = new Vector3 (screenWidth,transform.position.y,0);
 	}
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        life--;
+        Destroy(other.gameObject);
+    }
 }
