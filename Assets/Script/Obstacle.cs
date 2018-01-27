@@ -13,7 +13,4 @@ public class Obstacle : MonoBehaviour {
 	public enum ObstacleType{
 		projectile, fixedSpawn, fit
 	}
-		
-    void Start () {
-    }
 }

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class PlayerController : MonoBehaviour {
 
@@ -42,6 +43,7 @@ public class PlayerController : MonoBehaviour {
 
 	public void Die(){
 		Destroy (gameObject);
+		gm.GameOver ();
 	}
 
 	public void ChangePlayerForm(){

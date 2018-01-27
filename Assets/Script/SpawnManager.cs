@@ -5,13 +5,15 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour {
 
     public List<Obstacle> obstacle = new List<Obstacle>();
+	public float timeBetweenNewObstacleSpawn,timeBetweenFit;
+
     List<Obstacle> obstacleCanSpawn = new List<Obstacle>();
-    public float timeBetweenNewObstacleSpawn,timePased,timeBetweenFit;
     Vector3 spawnPoint;
     float spawnTimer,addTimer,fitSpawnDelay;
     int addCounter;
     bool canSpawnFit;
 	GameManager gm;
+
     void Awake()
     {
 		gm = FindObjectOfType<GameManager> ();
@@ -20,14 +22,8 @@ public class SpawnManager : MonoBehaviour {
         canSpawnFit = true;
         fitSpawnDelay = 0f;
     }
-    // Use this for initialization
-    void Start () {
-        
-	}
-	
-	// Update is called once per frame
+
 	void Update () {
-        timePased += Time.time;
         if (addCounter!=-1){
             if (addTimer >= obstacle[addCounter].addDelay)
             {
