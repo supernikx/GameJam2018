@@ -65,8 +65,10 @@ public class SpawnManager : MonoBehaviour {
 		float screenWidth = Camera.main.aspect * Camera.main.orthographicSize - obstacleCanSpawn[randomIndex].GetComponent<SpriteRenderer>().sprite.bounds.size.x / 2;
 		if(obstacleCanSpawn[randomIndex].type == Obstacle.ObstacleType.fit)
         	screenWidth = Camera.main.aspect * Camera.main.orthographicSize - 1f;
-		else{
-		}
+		else if (obstacleCanSpawn[randomIndex].type == Obstacle.ObstacleType.fixedSpawn)
+        {
+            screenWidth = 0f;
+        }
 		float randomXSPawnPoint = Random.Range(-screenWidth, screenWidth);
         spawnPoint = new Vector3(randomXSPawnPoint, Camera.main.orthographicSize, 0f);
         GameObject instantiatedObstacle = Instantiate(obstacleCanSpawn[randomIndex].gameObject, spawnPoint, Quaternion.identity);
