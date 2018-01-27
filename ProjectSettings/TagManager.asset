@@ -42,6 +42,9 @@ TagManager:
   - name: Background
     uniqueID: 2267407453
     locked: 0
+  - name: Default
+    uniqueID: 0
+    locked: 0
   - name: Walls
     uniqueID: 1912407205
     locked: 0
@@ -50,9 +53,6 @@ TagManager:
     locked: 0
   - name: Projectiles
     uniqueID: 2904553335
-    locked: 0
-  - name: Default
-    uniqueID: 0
     locked: 0
   - name: OmegaBackground
     uniqueID: 491658383
