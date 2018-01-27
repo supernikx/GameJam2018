@@ -180,7 +180,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fallingSpeed: 0.5
   addDelay: 0
-  lifeTime: 0
+  lifeTime: 20
   type: 1
   click: 0
   sprites:

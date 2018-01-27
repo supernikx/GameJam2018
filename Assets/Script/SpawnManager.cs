@@ -47,7 +47,7 @@ public class SpawnManager : MonoBehaviour {
     private void SpawnObstacle()
     {
         int randomIndex = Random.Range(0, obstacleCanSpawn.Count);
-        if (obstacleCanSpawn[randomIndex].type == Obstacle.ObstacleType.fit)
+        if (obstacleCanSpawn[randomIndex].type == Obstacle.ObstacleType.fit || obstacleCanSpawn[randomIndex].type == Obstacle.ObstacleType.fixedSpawn )
         {
             if (canSpawnFit)
             {
@@ -59,7 +59,7 @@ public class SpawnManager : MonoBehaviour {
                 do
                 {
                     randomIndex = Random.Range(0, obstacleCanSpawn.Count);
-                } while (obstacleCanSpawn[randomIndex].type == Obstacle.ObstacleType.fit);
+                } while (obstacleCanSpawn[randomIndex].type == Obstacle.ObstacleType.fit || obstacleCanSpawn[randomIndex].type == Obstacle.ObstacleType.fixedSpawn);
             }
         }
 		float screenWidth = Camera.main.aspect * Camera.main.orthographicSize - obstacleCanSpawn[randomIndex].GetComponent<SpriteRenderer>().sprite.bounds.size.x / 2;
