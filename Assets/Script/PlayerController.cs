@@ -10,7 +10,8 @@ public class PlayerController : MonoBehaviour {
 	SpriteRenderer mySprite;
 	float screenWidth;
 	Vector3 moveVelocity;
-	bool isFlat = true;
+    [HideInInspector]
+	public bool isFlat = true;
 
 	void Awake(){
 		flatPlayer = transform.GetChild (0);
