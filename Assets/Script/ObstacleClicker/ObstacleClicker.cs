@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ObstacleClicker : Obstacle {
-    public int click, clickToDestroy;
+    public int click;
     public Sprite[] sprites = new Sprite[0];
     private SpriteRenderer sprite;
     private void Start()
@@ -11,7 +11,8 @@ public class ObstacleClicker : Obstacle {
         sprite = GetComponent<SpriteRenderer>();
         sprite.sprite = sprites[0];
     }
-    private void OnMouseDown()
+
+    public void ButtonClicked()
     {
         click++;
         if (click == sprites.Length)
