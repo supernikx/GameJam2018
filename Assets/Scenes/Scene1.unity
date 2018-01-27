@@ -224,7 +224,8 @@ MonoBehaviour:
   obstacle:
   - {fileID: 114258054346971546, guid: ed61a2c840abbff499d12dd4f6c89887, type: 2}
   - {fileID: 114874169420677470, guid: 96f8d276dd6fe0a46a8a70c0e73f924d, type: 2}
-  timeBetweenNewObstacle: 0.5
+  obstacleCanSpawn: []
+  timeBetweenNewObstacleSpawn: 2
   timePased: 0
 --- !u!4 &1440369845
 Transform:

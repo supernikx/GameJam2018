@@ -5,14 +5,15 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour {
 
     public List<Obstacle> obstacle = new List<Obstacle>();
-    private List<Obstacle> obstacleCanSpawn;
-    public float timeBetweenNewObstacle,timePased;
-    Vector3 spawnPoint;
-    private float timer;
+    private List<Obstacle> obstacleCanSpawn = new List<Obstacle>();
+    public float timeBetweenNewObstacleSpawn,timePased;
+    private Vector3 spawnPoint;
+    private float spawnTimer,addTimer;
+    private int addCounter;
     private void Awake()
     {
-        obstacleCanSpawn = obstacle;
-
+        addCounter = 0;
+        addTimer = 0f;
     }
     // Use this for initialization
     void Start () {
@@ -22,7 +23,14 @@ public class SpawnManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         timePased += Time.time;
-        if (timer > timeBetweenNewObstacle)
+        if (addCounter!=-1){
+            if (addTimer >= obstacle[addCounter].addDelay)
+            {
+                AddNewObstacle();
+            }
+        }
+
+        if (spawnTimer > timeBetweenNewObstacleSpawn)
         {
             SpawnObstacle();
         }
@@ -35,12 +43,27 @@ public class SpawnManager : MonoBehaviour {
         float randomXSPawnPoint = Random.Range(-screenWidth, screenWidth);
         spawnPoint = new Vector3(randomXSPawnPoint, Camera.main.orthographicSize, 0f);
         GameObject instantiatedObstacle = Instantiate(obstacleCanSpawn[randomIndex].gameObject, spawnPoint, Quaternion.identity);
-        timer = 0;
+        spawnTimer = 0;
         Destroy(instantiatedObstacle, 3f);
+    }
+
+    private void AddNewObstacle()
+    {
+        obstacleCanSpawn.Add(obstacle[addCounter]);
+        addTimer = 0;
+        if (addCounter + 1 < obstacle.Count)
+        {
+            addCounter++;
+        }
+        else
+        {
+            addCounter = -1;
+        }
     }
 
     private void FixedUpdate()
     {
-        timer += Time.fixedDeltaTime;
+        spawnTimer += Time.fixedDeltaTime;
+        addTimer += Time.fixedDeltaTime;
     }
 }

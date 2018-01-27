@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
+[Serializable]
 public class Obstacle : MonoBehaviour {
 
     public float follingSpeed;
+    public float addDelay;
     Rigidbody2D rb2d;
 	// Use this for initialization
 	void Start () {
