@@ -13,7 +13,7 @@ public class Obstacle : MonoBehaviour {
     Rigidbody2D rb2d;
 
 	public enum ObstacleType{
-		projectile, drag, fit
+		projectile, fixedSpawn, fit
 	}
 		
     void Start () {

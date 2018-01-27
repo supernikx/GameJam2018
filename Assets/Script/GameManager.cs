@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour {
 	public Transform playerTransform;
 	public GameObject background;
 
-	float backgroundSpawnOffset = 0.1f;
+	float backgroundSpawnOffset = 0.3f;
 	GameObject lastInstantiatedBackground;
 
 	void Start(){
@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour {
 	void Update(){
 		if (lastInstantiatedBackground.transform.position.y < -Camera.main.orthographicSize) {
 			GameObject instantiatedBackground = Instantiate (background, new Vector3(0f, lastInstantiatedBackground.transform.position.y + lastInstantiatedBackground.GetComponent<SpriteRenderer>().sprite.bounds.size.y - backgroundSpawnOffset, 0f), Quaternion.identity);
-			Destroy (instantiatedBackground, 8f);
+			Destroy (lastInstantiatedBackground, 8f);
 			lastInstantiatedBackground = instantiatedBackground;
 		}
 	}
