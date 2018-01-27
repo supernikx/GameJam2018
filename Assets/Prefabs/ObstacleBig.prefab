@@ -22,6 +22,8 @@ GameObject:
   - component: {fileID: 212301625570746182}
   - component: {fileID: 61064186444033594}
   - component: {fileID: 61685527269480054}
+  - component: {fileID: 114387563634266928}
+  - component: {fileID: 50488986383412714}
   m_Layer: 0
   m_Name: ObstacleBig
   m_TagString: obstacle
@@ -36,12 +38,32 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1676753237344716}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.037994567, y: -0.035839684, z: -1.8261719}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &50488986383412714
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1676753237344716}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 6
 --- !u!61 &61064186444033594
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -51,7 +73,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -3.7025785, y: 0}
@@ -76,7 +98,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 3.6980312, y: 0}
@@ -92,6 +114,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 6.2423825, y: 1.01}
   m_EdgeRadius: 0
+--- !u!114 &114387563634266928
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1676753237344716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc0b1d3e9e425264bae35f5541d4c73b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fallingSpeed: 5
+  addDelay: 0
+  lifeTime: 5
+  type: 2
 --- !u!212 &212301625570746182
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -126,7 +163,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b4eddccc0d7c96c4f93a2bf2367eb7bc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 685132c0c8ee4fe498ed111460f79278, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

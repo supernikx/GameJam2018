@@ -10,7 +10,7 @@ public class ObstacleTriangle : Obstacle {
     // Use this for initialization
     void Start () {
         rb2d = GetComponent<Rigidbody2D>();
-        rb2d.velocity = new Vector3(0, -follingSpeed, 0);
+        rb2d.velocity = new Vector3(0, -fallingSpeed, 0);
         rotationdirection = Random.Range(0,2);
     }
 	

@@ -39,12 +39,16 @@ public class SpawnManager : MonoBehaviour {
     private void SpawnObstacle()
     {
         int randomIndex = Random.Range(0, obstacleCanSpawn.Count);
-        float screenWidth = Camera.main.aspect * Camera.main.orthographicSize - obstacleCanSpawn[randomIndex].GetComponent<SpriteRenderer>().sprite.bounds.size.x / 2;
-        float randomXSPawnPoint = Random.Range(-screenWidth, screenWidth);
+		float screenWidth = Camera.main.aspect * Camera.main.orthographicSize - obstacleCanSpawn[randomIndex].GetComponent<SpriteRenderer>().sprite.bounds.size.x / 2;
+		if(obstacleCanSpawn[randomIndex].type == Obstacle.ObstacleType.fit)
+        	screenWidth = Camera.main.aspect * Camera.main.orthographicSize - 1f;
+		else{
+		}
+		float randomXSPawnPoint = Random.Range(-screenWidth, screenWidth);
         spawnPoint = new Vector3(randomXSPawnPoint, Camera.main.orthographicSize, 0f);
         GameObject instantiatedObstacle = Instantiate(obstacleCanSpawn[randomIndex].gameObject, spawnPoint, Quaternion.identity);
         spawnTimer = 0;
-        Destroy(instantiatedObstacle, 3f);
+		Destroy(instantiatedObstacle, instantiatedObstacle.gameObject.GetComponent<Obstacle>().lifeTime);
     }
 
     private void AddNewObstacle()

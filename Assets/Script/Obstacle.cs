@@ -4,17 +4,20 @@ using UnityEngine;
 using System;
 
 public class Obstacle : MonoBehaviour {
-    public float follingSpeed;
+	
+    public float fallingSpeed;
     public float addDelay;
+	public float lifeTime;
+	public ObstacleType type;
+
     Rigidbody2D rb2d;
-    // Use this for initialization
+
+	public enum ObstacleType{
+		projectile, drag, fit
+	}
+		
     void Start () {
         rb2d = GetComponent<Rigidbody2D>();
-        rb2d.velocity = new Vector3(0, -follingSpeed, 0);
+        rb2d.velocity = new Vector3(0, -fallingSpeed, 0);
     }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }
