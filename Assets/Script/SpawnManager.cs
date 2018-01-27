@@ -6,14 +6,17 @@ public class SpawnManager : MonoBehaviour {
 
     public List<Obstacle> obstacle = new List<Obstacle>();
     private List<Obstacle> obstacleCanSpawn = new List<Obstacle>();
-    public float timeBetweenNewObstacleSpawn,timePased;
+    public float timeBetweenNewObstacleSpawn,timePased,timeBetweenFit;
     private Vector3 spawnPoint;
-    private float spawnTimer,addTimer;
+    private float spawnTimer,addTimer,fitSpawnDelay;
     private int addCounter;
+    private bool canSpawnFit;
     private void Awake()
     {
         addCounter = 0;
         addTimer = 0f;
+        canSpawnFit = true;
+        fitSpawnDelay = 0f;
     }
     // Use this for initialization
     void Start () {
@@ -30,6 +33,11 @@ public class SpawnManager : MonoBehaviour {
             }
         }
 
+        if (fitSpawnDelay > timeBetweenFit)
+        {
+            canSpawnFit = true;
+        }
+
         if (spawnTimer > timeBetweenNewObstacleSpawn)
         {
             SpawnObstacle();
@@ -39,6 +47,21 @@ public class SpawnManager : MonoBehaviour {
     private void SpawnObstacle()
     {
         int randomIndex = Random.Range(0, obstacleCanSpawn.Count);
+        if (obstacleCanSpawn[randomIndex].type == Obstacle.ObstacleType.fit)
+        {
+            if (canSpawnFit)
+            {
+                canSpawnFit = false;
+                fitSpawnDelay = 0;
+            }
+            else
+            {
+                do
+                {
+                    randomIndex = Random.Range(0, obstacleCanSpawn.Count);
+                } while (obstacleCanSpawn[randomIndex].type == Obstacle.ObstacleType.fit);
+            }
+        }
 		float screenWidth = Camera.main.aspect * Camera.main.orthographicSize - obstacleCanSpawn[randomIndex].GetComponent<SpriteRenderer>().sprite.bounds.size.x / 2;
 		if(obstacleCanSpawn[randomIndex].type == Obstacle.ObstacleType.fit)
         	screenWidth = Camera.main.aspect * Camera.main.orthographicSize - 1f;
@@ -69,5 +92,6 @@ public class SpawnManager : MonoBehaviour {
     {
         spawnTimer += Time.fixedDeltaTime;
         addTimer += Time.fixedDeltaTime;
+        fitSpawnDelay += Time.fixedDeltaTime;
     }
 }
