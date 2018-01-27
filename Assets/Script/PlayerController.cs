@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour {
 
 	public float moveSpeed = 5f;
-    public int life = 100;
 
 	Transform flatPlayer, rotatedPlayer;
 	SpriteRenderer mySprite;
@@ -38,11 +37,9 @@ public class PlayerController : MonoBehaviour {
 			transform.position = new Vector3 (screenWidth,transform.position.y,0);
 	}
 
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        life--;
-        Destroy(other.gameObject);
-    }
+	public void Die(){
+		Destroy (gameObject);
+	}
 
 	public void ChangePlayerForm(){
 		flatPlayer.gameObject.SetActive (isFlat);
