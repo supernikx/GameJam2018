@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4495317616513096}
   - component: {fileID: 212167781936553406}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: EnemyButtonGreen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36,7 +36,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4106871172730498}
   - component: {fileID: 212475174736264554}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: EnemyButtonRed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -52,7 +52,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4651732813609482}
   - component: {fileID: 212695270006091172}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: NemicoObeso 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 212644305285518902}
   - component: {fileID: 61470569402772348}
   - component: {fileID: 114400087448446266}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: RotatedPlayer
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 212958013871786614}
   - component: {fileID: 58386917697759448}
   - component: {fileID: 114034715209671660}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: FlatPlayer
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -56,7 +56,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4771480972331218}
   - component: {fileID: 114151855362924050}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Player 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
