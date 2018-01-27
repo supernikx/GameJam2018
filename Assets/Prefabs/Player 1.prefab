@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4103401880857662}
   - component: {fileID: 212644305285518902}
   - component: {fileID: 61470569402772348}
+  - component: {fileID: 114400087448446266}
   m_Layer: 0
   m_Name: RotatedPlayer
   m_TagString: Player
@@ -38,6 +39,7 @@ GameObject:
   - component: {fileID: 4562060777417382}
   - component: {fileID: 212958013871786614}
   - component: {fileID: 58386917697759448}
+  - component: {fileID: 114034715209671660}
   m_Layer: 0
   m_Name: FlatPlayer
   m_TagString: Player
@@ -111,7 +113,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -126,7 +128,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.000000059604645, y: 0}
@@ -142,6 +144,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.259004, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &114034715209671660
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1690647900490130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b40d66de23a020046804c80a856b26bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114151855362924050
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -153,8 +166,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c272abaa527476745aa22665a6eb8b9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
-  life: 100
+  moveSpeed: 8
+--- !u!114 &114400087448446266
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1638091144067022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b40d66de23a020046804c80a856b26bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212644305285518902
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -188,7 +211,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 30d2eb3575110b841a37d89e95719576, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -232,7 +255,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 3e6a9671a6e837843b4a86ec5562b91f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
