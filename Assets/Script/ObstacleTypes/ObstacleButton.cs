@@ -12,7 +12,6 @@ public class ObstacleButton : Obstacle {
 
 	[HideInInspector]
 	public int hp;
-
 	float screenWidth;
 
 	void Awake(){
@@ -24,6 +23,7 @@ public class ObstacleButton : Obstacle {
 	}
 
 	void Update(){
+        
 		if (hp <= 0)
 			Die ();
 	}

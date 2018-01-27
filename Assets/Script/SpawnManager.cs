@@ -9,7 +9,7 @@ public class SpawnManager : MonoBehaviour {
 
     List<Obstacle> obstacleCanSpawn = new List<Obstacle>();
     Vector3 spawnPoint;
-    float spawnTimer,addTimer,fitSpawnDelay;
+    float spawnTimer,addTimer,fitSpawnDelay, cantRandomXSPawnPoint;
     int addCounter;
     bool canSpawnFit;
 	GameManager gm;
@@ -21,6 +21,7 @@ public class SpawnManager : MonoBehaviour {
         addTimer = 0f;
         canSpawnFit = true;
         fitSpawnDelay = 0f;
+        cantRandomXSPawnPoint = -100;
     }
 
 	void Update () {
@@ -34,6 +35,7 @@ public class SpawnManager : MonoBehaviour {
         if (fitSpawnDelay > timeBetweenFit)
         {
             canSpawnFit = true;
+            cantRandomXSPawnPoint = -100;
         }
 
         if (spawnTimer > timeBetweenNewObstacleSpawn)
@@ -61,13 +63,31 @@ public class SpawnManager : MonoBehaviour {
             }
         }
 		float screenWidth = gm.background.GetComponent<SpriteRenderer>().sprite.bounds.size.x/2 - obstacleCanSpawn[randomIndex].GetComponent<SpriteRenderer>().sprite.bounds.size.x / 2;
-		if(obstacleCanSpawn[randomIndex].type == Obstacle.ObstacleType.fit)
-			screenWidth = gm.background.GetComponent<SpriteRenderer>().sprite.bounds.size.x/2 - 1f;
-		else if (obstacleCanSpawn[randomIndex].type == Obstacle.ObstacleType.fixedSpawn)
+        if (obstacleCanSpawn[randomIndex].type == Obstacle.ObstacleType.fit)
+        {
+            screenWidth = gm.background.GetComponent<SpriteRenderer>().sprite.bounds.size.x / 2 - 1f;
+        }
+        else if (obstacleCanSpawn[randomIndex].type == Obstacle.ObstacleType.fixedSpawn)
         {
             screenWidth = 0f;
         }
 		float randomXSPawnPoint = Random.Range(-screenWidth, screenWidth);
+        
+        if (obstacleCanSpawn[randomIndex].type == Obstacle.ObstacleType.fit)
+        {
+            cantRandomXSPawnPoint = randomXSPawnPoint;
+        }
+        else if (cantRandomXSPawnPoint!=-100f && randomXSPawnPoint>cantRandomXSPawnPoint-1f && randomXSPawnPoint < cantRandomXSPawnPoint + 1)
+        {
+            if (randomIndex < 0)
+            {
+                randomXSPawnPoint -= 1f;
+            }
+            else
+            {
+                randomXSPawnPoint += 1f;
+            }
+        }
         spawnPoint = new Vector3(randomXSPawnPoint, Camera.main.orthographicSize, 0f);
         GameObject instantiatedObstacle = Instantiate(obstacleCanSpawn[randomIndex].gameObject, spawnPoint, Quaternion.identity);
         spawnTimer = 0;
