@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -268,9 +268,13 @@ MonoBehaviour:
   - {fileID: 114459020439611480, guid: ed61a2c840abbff499d12dd4f6c89887, type: 2}
   - {fileID: 114387563634266928, guid: 91d9219541509f04cb0df3e1f10e9894, type: 2}
   - {fileID: 114387563634266928, guid: 6a0d95262cf29424b84285af63e75023, type: 2}
+  - {fileID: 114742478548023478, guid: 85f6c3dbe03fc524aa4c0705c7bb7ecf, type: 2}
+  - {fileID: 114093108869842102, guid: 109b8527d5e49de448da6899cf8d25e6, type: 2}
+  - {fileID: 114996299824371718, guid: 30f5c7eb35e21574e8782dffb42fc5ef, type: 2}
+  - {fileID: 114103326679076818, guid: fb1b6c5fe965d734e8ec9373f8ed0b90, type: 2}
   timeBetweenNewObstacleSpawn: 1
   timePased: 0
-  timeBetweenFit: 3
+  timeBetweenFit: 5
 --- !u!4 &1440369845
 Transform:
   m_ObjectHideFlags: 0
