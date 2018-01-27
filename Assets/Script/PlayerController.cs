@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour {
 
 	public float moveSpeed = 5f;
+	GameManager gm;
 
 	Transform flatPlayer, rotatedPlayer;
 	SpriteRenderer mySprite;
@@ -14,10 +15,11 @@ public class PlayerController : MonoBehaviour {
 	public bool isFlat = true;
 
 	void Awake(){
+		gm = FindObjectOfType<GameManager> ();
 		flatPlayer = transform.GetChild (0);
 		rotatedPlayer = transform.GetChild (1);
 		mySprite = flatPlayer.GetComponent<SpriteRenderer>();
-		screenWidth = Camera.main.aspect * Camera.main.orthographicSize - mySprite.sprite.bounds.size.x/2;
+		screenWidth = gm.background.GetComponent<SpriteRenderer>().sprite.bounds.size.x/2 - mySprite.sprite.bounds.size.x/2;
 	}
 		
 	void Update () {

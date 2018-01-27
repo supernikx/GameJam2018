@@ -5,6 +5,7 @@ using UnityEngine;
 public class ObstacleButton : Obstacle {
 
 	Rigidbody2D rb2d;
+	GameManager gm;
 
 	public GameObject[] buttonsArray;
 	public GameObject[] fitObstaclesToSpawn;
@@ -15,10 +16,11 @@ public class ObstacleButton : Obstacle {
 	float screenWidth;
 
 	void Awake(){
+		gm = FindObjectOfType<GameManager> ();
 		rb2d = GetComponent<Rigidbody2D>();
 		rb2d.velocity = new Vector3(0, -this.fallingSpeed, 0);
 		hp = buttonsArray.Length;
-		screenWidth = Camera.main.aspect * Camera.main.orthographicSize - 1f;
+		screenWidth = gm.background.GetComponent<SpriteRenderer>().sprite.bounds.size.x/2- 1f;
 	}
 
 	void Update(){

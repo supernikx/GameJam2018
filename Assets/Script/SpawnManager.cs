@@ -5,14 +5,16 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour {
 
     public List<Obstacle> obstacle = new List<Obstacle>();
-    private List<Obstacle> obstacleCanSpawn = new List<Obstacle>();
+    List<Obstacle> obstacleCanSpawn = new List<Obstacle>();
     public float timeBetweenNewObstacleSpawn,timePased,timeBetweenFit;
-    private Vector3 spawnPoint;
-    private float spawnTimer,addTimer,fitSpawnDelay;
-    private int addCounter;
-    private bool canSpawnFit;
-    private void Awake()
+    Vector3 spawnPoint;
+    float spawnTimer,addTimer,fitSpawnDelay;
+    int addCounter;
+    bool canSpawnFit;
+	GameManager gm;
+    void Awake()
     {
+		gm = FindObjectOfType<GameManager> ();
         addCounter = 0;
         addTimer = 0f;
         canSpawnFit = true;
@@ -62,9 +64,9 @@ public class SpawnManager : MonoBehaviour {
                 } while (obstacleCanSpawn[randomIndex].type == Obstacle.ObstacleType.fit || obstacleCanSpawn[randomIndex].type == Obstacle.ObstacleType.fixedSpawn);
             }
         }
-		float screenWidth = Camera.main.aspect * Camera.main.orthographicSize - obstacleCanSpawn[randomIndex].GetComponent<SpriteRenderer>().sprite.bounds.size.x / 2;
+		float screenWidth = gm.background.GetComponent<SpriteRenderer>().sprite.bounds.size.x/2 - obstacleCanSpawn[randomIndex].GetComponent<SpriteRenderer>().sprite.bounds.size.x / 2;
 		if(obstacleCanSpawn[randomIndex].type == Obstacle.ObstacleType.fit)
-        	screenWidth = Camera.main.aspect * Camera.main.orthographicSize - 1f;
+			screenWidth = gm.background.GetComponent<SpriteRenderer>().sprite.bounds.size.x/2 - 1f;
 		else if (obstacleCanSpawn[randomIndex].type == Obstacle.ObstacleType.fixedSpawn)
         {
             screenWidth = 0f;
