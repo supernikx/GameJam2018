@@ -20,9 +20,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4302094948693650}
   - component: {fileID: 212545891952569858}
-  - component: {fileID: 114258054346971546}
   - component: {fileID: 50089071698303424}
-  - component: {fileID: 61331202826745474}
+  - component: {fileID: 114459020439611480}
+  - component: {fileID: 60840181426995492}
   m_Layer: 0
   m_Name: Obstacle1
   m_TagString: obstacle
@@ -63,8 +63,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &61331202826745474
-BoxCollider2D:
+--- !u!60 &60840181426995492
+PolygonCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -77,18 +77,28 @@ BoxCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
-    border: {x: 0.049999997, y: 0.049999997, z: 0.049999997, w: 0.049999997}
+    border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.16, y: 0.16}
+    oldSize: {x: 0.8, y: 0.78}
     newSize: {x: 0.16, y: 0.16}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.16, y: 0.16}
-  m_EdgeRadius: 0
---- !u!114 &114258054346971546
+  m_Points:
+    m_Paths:
+    - - {x: 0.19, y: 0.12}
+      - {x: 0.089999996, y: 0.29}
+      - {x: 0.02, y: 0.39}
+      - {x: -0.03, y: 0.39}
+      - {x: -0.08, y: 0.31}
+      - {x: -0.26999998, y: -0.01}
+      - {x: -0.39999998, y: -0.24}
+      - {x: -0.39999998, y: -0.39}
+      - {x: 0.39999998, y: -0.39}
+      - {x: 0.39999998, y: -0.24}
+      - {x: 0.38, y: -0.19999999}
+--- !u!114 &114459020439611480
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -96,11 +106,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1295708502775538}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e86cd1c26dfe8a546b504de7dc750a35, type: 3}
+  m_Script: {fileID: 11500000, guid: e3adb3b76f9badd40acb00592654caba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   follingSpeed: 5
   addDelay: 0
+  rotatingSpeed: 200
 --- !u!212 &212545891952569858
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -135,8 +146,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 0.087047234, g: 0.01995028, b: 0.9044118, a: 1}
+  m_Sprite: {fileID: 21300000, guid: ac5026927f298cf4ca50df7119db8855, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

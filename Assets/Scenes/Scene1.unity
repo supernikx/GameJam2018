@@ -113,6 +113,52 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &243828016
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4302094948693650, guid: ed61a2c840abbff499d12dd4f6c89887, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -1.68
+      objectReference: {fileID: 0}
+    - target: {fileID: 4302094948693650, guid: ed61a2c840abbff499d12dd4f6c89887, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4302094948693650, guid: ed61a2c840abbff499d12dd4f6c89887, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4302094948693650, guid: ed61a2c840abbff499d12dd4f6c89887, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4302094948693650, guid: ed61a2c840abbff499d12dd4f6c89887, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4302094948693650, guid: ed61a2c840abbff499d12dd4f6c89887, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4302094948693650, guid: ed61a2c840abbff499d12dd4f6c89887, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4302094948693650, guid: ed61a2c840abbff499d12dd4f6c89887, type: 2}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1295708502775538, guid: ed61a2c840abbff499d12dd4f6c89887, type: 2}
+      propertyPath: m_Name
+      value: ObstacleTriangle
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: ed61a2c840abbff499d12dd4f6c89887, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &610675852
 GameObject:
   m_ObjectHideFlags: 0
@@ -222,7 +268,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obstacle:
-  - {fileID: 114258054346971546, guid: ed61a2c840abbff499d12dd4f6c89887, type: 2}
+  - {fileID: 114459020439611480, guid: ed61a2c840abbff499d12dd4f6c89887, type: 2}
   - {fileID: 114874169420677470, guid: 96f8d276dd6fe0a46a8a70c0e73f924d, type: 2}
   timeBetweenNewObstacleSpawn: 1
   timePased: 0
