@@ -51,6 +51,6 @@ public class PlayerController : MonoBehaviour {
 			mySprite = rotatedPlayer.GetComponent<SpriteRenderer>();
 		else
 			mySprite = flatPlayer.GetComponent<SpriteRenderer>();
-		screenWidth = Camera.main.aspect * Camera.main.orthographicSize - mySprite.sprite.bounds.size.x/2;
+		screenWidth = gm.background.GetComponent<SpriteRenderer>().sprite.bounds.size.x/2 - mySprite.sprite.bounds.size.x/2;
 	}
 }

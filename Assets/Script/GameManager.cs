@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour {
 
 	public Transform playerTransform;
 	public GameObject background;
+	public GameObject pauseMenu;
 
 	float backgroundSpawnOffset = 0.3f;
 	GameObject lastInstantiatedBackground;
@@ -20,5 +21,14 @@ public class GameManager : MonoBehaviour {
 			Destroy (lastInstantiatedBackground, 8f);
 			lastInstantiatedBackground = instantiatedBackground;
 		}
+		if (Input.GetKeyDown (KeyCode.Escape))
+			ControlMenu ();
+	}
+
+	public void ControlMenu(){
+		if (pauseMenu.activeSelf)
+			pauseMenu.SetActive (false);
+		else if (!pauseMenu.activeSelf)
+			pauseMenu.SetActive (true);
 	}
 }
