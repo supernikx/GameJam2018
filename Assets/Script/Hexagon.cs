@@ -6,13 +6,13 @@ public class Hexagon : Obstacle {
 
     private Vector3 startScale, scaleToReach;
     public float scaleSpeed;
-    private bool scrt;
+    private bool expand;
     public float rotatingSpeed;
     Rigidbody2D rb2d;
     private int rotationdirection;
     private void Start()
     {
-        scrt = true;
+        expand = true;
         startScale = transform.localScale;
         scaleToReach = startScale + new Vector3(0.6f, 0.6f, 0f);
         rb2d = GetComponent<Rigidbody2D>();
@@ -21,20 +21,20 @@ public class Hexagon : Obstacle {
     }
     // Update is called once per frame
     void Update () {
-        if (scrt)
+        if (expand)
         {
             transform.localScale += new Vector3(scaleSpeed*Time.deltaTime, scaleSpeed * Time.deltaTime, 0f);
             if (transform.localScale.x>scaleToReach.x && transform.localScale.y > scaleToReach.y)
             {
-                scrt = false;
+                expand = false;
             }
         }
-        if (!scrt)
+        if (!expand)
         {
             transform.localScale -= new Vector3(scaleSpeed * Time.deltaTime, scaleSpeed * Time.deltaTime, 0f);
             if (transform.localScale.x < startScale.x && transform.localScale.y < startScale.y)
             {
-                scrt = true;
+                expand = true;
             }
         }
 
