@@ -23,8 +23,8 @@ public class ObstacleDrag : Obstacle {
                 transform.position += new Vector3(movementspeed, 0f, 0f);
             }
         }
-        if (!right) { 
-            if (Input.GetAxis("Mouse ScrollWheel") < 0f || Input.GetAxis("Mouse ScrollWheel") > 0f) // backwards
+        if (!right) {
+            if (Input.GetAxis("Mouse ScrollWheel") > 0f || Input.GetAxis("Mouse ScrollWheel") < 0f) // backwards
             {
                 transform.position += new Vector3(-movementspeed, 0f, 0f);
             }

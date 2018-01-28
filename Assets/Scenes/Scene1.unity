@@ -649,7 +649,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.64705884, g: 0.7843137, b: 1, a: 0}
+  m_BackGroundColor: {r: 1, g: 1, b: 1, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -1119,9 +1119,36 @@ Prefab:
       value: 
       objectReference: {fileID: 212150203095438848, guid: a04ada028de56864a8c1182315c7e3be,
         type: 2}
+    - target: {fileID: 114151855362924050, guid: ce2c956b2be75544d8e4b4b2258fe32a,
+        type: 2}
+      propertyPath: moveSpeed
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ce2c956b2be75544d8e4b4b2258fe32a, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &944240560 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1690647900490130, guid: ce2c956b2be75544d8e4b4b2258fe32a,
+    type: 2}
+  m_PrefabInternal: {fileID: 944240559}
+--- !u!95 &944240561
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 944240560}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7fabbc78a9c1d3d4fbc320d1a703d40d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &962290966
 GameObject:
   m_ObjectHideFlags: 0
@@ -1498,7 +1525,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 0.766}
+  m_Color: {r: 1, g: 0, b: 0, a: 0}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1606,17 +1633,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 1440369843}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b59267d7cab4e1c428d392822bef345d, type: 3}
+  m_Script: {fileID: 11500000, guid: fecbedcb2f6f6df4d82eac2a93c9bba7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   obstacle:
   - {fileID: 114459020439611480, guid: ed61a2c840abbff499d12dd4f6c89887, type: 2}
   - {fileID: 114387563634266928, guid: 91d9219541509f04cb0df3e1f10e9894, type: 2}
   - {fileID: 114387563634266928, guid: 6a0d95262cf29424b84285af63e75023, type: 2}
-  - {fileID: 114742478548023478, guid: 85f6c3dbe03fc524aa4c0705c7bb7ecf, type: 2}
-  - {fileID: 114093108869842102, guid: 109b8527d5e49de448da6899cf8d25e6, type: 2}
-  - {fileID: 114996299824371718, guid: 30f5c7eb35e21574e8782dffb42fc5ef, type: 2}
-  - {fileID: 114103326679076818, guid: fb1b6c5fe965d734e8ec9373f8ed0b90, type: 2}
+  - {fileID: 114983674839893870, guid: fb1b6c5fe965d734e8ec9373f8ed0b90, type: 2}
+  - {fileID: 114366138006366688, guid: 30f5c7eb35e21574e8782dffb42fc5ef, type: 2}
+  - {fileID: 114459843305111550, guid: 4623da04e118e2349b75e3887b0d695a, type: 2}
+  - {fileID: 114075125229250598, guid: 85f6c3dbe03fc524aa4c0705c7bb7ecf, type: 2}
+  - {fileID: 114087002973124560, guid: f30b2a6d18c11fd4788ddd65bf36843f, type: 2}
+  - {fileID: 114510152349158946, guid: a1337fe6954c9f147a5b302021ce617f, type: 2}
+  - {fileID: 114093108869842102, guid: 5e312598696d87241b48ed156b35c576, type: 2}
   timeBetweenNewObstacleSpawn: 1
   timeBetweenFit: 5
 --- !u!4 &1440369845
@@ -1644,11 +1674,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTransform: {fileID: 1583439825}
-  background: {fileID: 1010614347967858, guid: a04ada028de56864a8c1182315c7e3be, type: 2}
-  omegaBackground: {fileID: 1460132762214450, guid: dac656ae105367641a15ac2c33664523,
+  backgroundPause: {fileID: 1988704885447698, guid: 55ef3ba6cfa683441b188dd583c7c260,
     type: 2}
+  omegaBackgroundPause: {fileID: 1015739884481382, guid: d8e4ad206fbbb34418fb178dd071415f,
+    type: 2}
+  backgrounds:
+  - {fileID: 1010614347967858, guid: a04ada028de56864a8c1182315c7e3be, type: 2}
+  - {fileID: 1237860660461262, guid: 539c3e15b7099d7468248ecc414ef425, type: 2}
+  - {fileID: 1644652214033644, guid: 3d09743fb7ae4af4eac65395210ffd8c, type: 2}
+  - {fileID: 1383060007390128, guid: 58a8a0964eec70c45827204815a1d8f0, type: 2}
+  omegaBackgrounds:
+  - {fileID: 1460132762214450, guid: dac656ae105367641a15ac2c33664523, type: 2}
+  - {fileID: 1824102741555250, guid: fcc4645abaa79b440b89f0015429b24f, type: 2}
+  - {fileID: 1646415198022324, guid: a278d6354ca97104ab2e46d02851b341, type: 2}
+  - {fileID: 1613507596319376, guid: f698a4221f6076746b620d7568471afe, type: 2}
+  phases: 0500000014000000280000003c000000
   pauseMenu: {fileID: 153968170}
   gameOverScreen: {fileID: 962290966}
+  gridPositions: []
+  timePassed: 0
+  timeBasedIndex: 0
 --- !u!4 &1583439825 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4771480972331218, guid: ce2c956b2be75544d8e4b4b2258fe32a,
@@ -1905,7 +1950,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColor: {r: 1, g: 1, b: 1, a: 0}
   m_enableVertexGradient: 1
   m_fontColorGradient:
     topLeft: {r: 1, g: 1, b: 1, a: 1}

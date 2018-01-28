@@ -62,42 +62,40 @@ public class SpawnManager : MonoBehaviour {
                 } while (obstacleCanSpawn[randomIndex].type == Obstacle.ObstacleType.fit || obstacleCanSpawn[randomIndex].type == Obstacle.ObstacleType.fixedSpawn);
             }
         }
-		float screenWidth = gm.background.GetComponent<SpriteRenderer>().sprite.bounds.size.x/2 - obstacleCanSpawn[randomIndex].GetComponent<SpriteRenderer>().sprite.bounds.size.x / 2;
-        if (obstacleCanSpawn[randomIndex].type == Obstacle.ObstacleType.fit)
-        {
-            screenWidth = gm.background.GetComponent<SpriteRenderer>().sprite.bounds.size.x / 2 - 1f;
-        }
-        else if (obstacleCanSpawn[randomIndex].type == Obstacle.ObstacleType.fixedSpawn)
-        {
-            screenWidth = 0f;
-        }
+		float screenWidth = gm.backgroundPause.GetComponent<SpriteRenderer>().sprite.bounds.size.x/2 - obstacleCanSpawn[randomIndex].GetComponent<SpriteRenderer>().sprite.bounds.size.x / 2;
 		float randomXSPawnPoint = Random.Range(-screenWidth, screenWidth);
-        
-        if (obstacleCanSpawn[randomIndex].type == Obstacle.ObstacleType.fit)
+        if (obstacleCanSpawn[randomIndex].type == Obstacle.ObstacleType.fit || obstacleCanSpawn[randomIndex].type == Obstacle.ObstacleType.fixedSpawn)
         {
+			int randomGridPosition = Random.Range (1, gm.gridPositions.Length - 1);
+			randomXSPawnPoint = gm.gridPositions [randomGridPosition];
             cantRandomXSPawnPoint = randomXSPawnPoint;
-        }
-        else if (cantRandomXSPawnPoint!=-100f && randomXSPawnPoint>cantRandomXSPawnPoint-1f && randomXSPawnPoint < cantRandomXSPawnPoint + 1)
-        {
-            if (randomIndex < 0)
+            if (obstacleCanSpawn[randomIndex].type == Obstacle.ObstacleType.fixedSpawn)
             {
-                randomXSPawnPoint -= 1f;
+                randomXSPawnPoint = 0f;
+            }
+        }else if (cantRandomXSPawnPoint != -100f && randomXSPawnPoint > cantRandomXSPawnPoint - 2f && randomXSPawnPoint < cantRandomXSPawnPoint + 2f)
+            {
+             if (randomXSPawnPoint > -2f && randomXSPawnPoint < 2f)
+            {
+                if (randomXSPawnPoint > -2f && randomXSPawnPoint < 0f)
+                    randomXSPawnPoint -= 3f;
+                else if (randomXSPawnPoint > 0f && randomXSPawnPoint < 2f)
+                    randomXSPawnPoint += 3f;
             }
             else
-            {
-                randomXSPawnPoint += 1f;
+                {
+                    randomXSPawnPoint *= -1;
+                }
             }
-        }
-        spawnPoint = new Vector3(randomXSPawnPoint, Camera.main.orthographicSize, 0f);
-        GameObject instantiatedObstacle = Instantiate(obstacleCanSpawn[randomIndex].gameObject, spawnPoint, Quaternion.identity);
-        spawnTimer = 0;
-		Destroy(instantiatedObstacle, instantiatedObstacle.gameObject.GetComponent<Obstacle>().lifeTime);
+            spawnPoint = new Vector3(randomXSPawnPoint, Camera.main.orthographicSize, 0f);
+            GameObject instantiatedObstacle = Instantiate(obstacleCanSpawn[randomIndex].gameObject, spawnPoint, Quaternion.identity);
+            spawnTimer = 0;
+            Destroy(instantiatedObstacle, instantiatedObstacle.gameObject.GetComponent<Obstacle>().lifeTime);
     }
 
     private void AddNewObstacle()
     {
         obstacleCanSpawn.Add(obstacle[addCounter]);
-        addTimer = 0;
         if (addCounter + 1 < obstacle.Count)
         {
             addCounter++;
@@ -113,5 +111,10 @@ public class SpawnManager : MonoBehaviour {
         spawnTimer += Time.fixedDeltaTime;
         addTimer += Time.fixedDeltaTime;
         fitSpawnDelay += Time.fixedDeltaTime;
+    }
+
+    public float GetCantXSPawn()
+    {
+        return cantRandomXSPawnPoint;
     }
 }
