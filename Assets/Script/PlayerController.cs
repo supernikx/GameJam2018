@@ -6,8 +6,11 @@ using System;
 public class PlayerController : MonoBehaviour {
 
 	public float speedWhilePressing = .15f;
+	Animator animator;
 	GameManager gm;
 	int myGridPosition;
+	public AudioSource death;
+	public AudioSource flip;
 
 	Transform flatPlayer, rotatedPlayer;
 	SpriteRenderer mySprite;
@@ -16,6 +19,10 @@ public class PlayerController : MonoBehaviour {
 	Vector3 moveVelocity;
     [HideInInspector]
 	public bool isFlat = true;
+
+	void Awake(){
+		animator = GetComponentInChildren<Animator> ();
+	}
 
 	void Start(){
 		gm = FindObjectOfType<GameManager> ();
@@ -32,17 +39,20 @@ public class PlayerController : MonoBehaviour {
 		if (Input.GetKeyDown (KeyCode.A)) {
 			if (myGridPosition - 1 > 0) {
 				myGridPosition -= 1;
+				animator.SetTrigger ("left");
 				transform.position = new Vector3 (gm.gridPositions [myGridPosition], transform.position.y, 0f);
 			}
 		}else if(Input.GetKeyDown (KeyCode.D)){
 			if (myGridPosition + 1 < gm.gridPositions.Length) {
 				myGridPosition += 1;
+				animator.SetTrigger ("right");
 				transform.position = new Vector3 (gm.gridPositions [myGridPosition], transform.position.y, 0f);
 			}	
 		}
 
 		//movement while key pressed
 		if (Input.GetKey (KeyCode.A)) {
+			animator.SetBool ("leftPressed", true);
 			movingTimer += Time.deltaTime;
 			if (myGridPosition - 1 > 0 && movingTimer >= speedWhilePressing) {
 				myGridPosition -= 1;
@@ -50,6 +60,7 @@ public class PlayerController : MonoBehaviour {
 				movingTimer = 0;
 			}
 		}else if(Input.GetKey (KeyCode.D)){
+			animator.SetBool ("rightPressed", true);
 			movingTimer += Time.deltaTime;
 			if (myGridPosition + 1 < gm.gridPositions.Length && movingTimer >= speedWhilePressing) {
 				myGridPosition += 1;
@@ -57,6 +68,11 @@ public class PlayerController : MonoBehaviour {
 				movingTimer = 0;
 			}	
 		}
+
+		if (Input.GetKeyUp (KeyCode.A))
+			animator.SetBool ("leftPressed", false);
+		if (Input.GetKeyUp (KeyCode.D))
+			animator.SetBool ("rightPressed", false);
 
 		if (Input.GetKeyDown (KeyCode.LeftShift)) {
 			isFlat = !isFlat;
@@ -73,9 +89,13 @@ public class PlayerController : MonoBehaviour {
 //	}
 
 	public void Die(){
-		if (rotatedPlayer.gameObject.activeSelf)
+		if (rotatedPlayer.gameObject.activeSelf) {
+			isFlat = !isFlat;
 			ChangePlayerForm ();
-		Destroy (gameObject);
+		}
+			
+		death.Play ();
+		animator.SetTrigger ("death");
 		gm.GameOver ();
 	}
 
@@ -86,6 +106,7 @@ public class PlayerController : MonoBehaviour {
 			mySprite = rotatedPlayer.GetComponent<SpriteRenderer>();
 		else
 			mySprite = flatPlayer.GetComponent<SpriteRenderer>();
+		flip.Play ();
 		screenWidth = gm.backgroundPause.GetComponent<SpriteRenderer>().sprite.bounds.size.x/2 - mySprite.sprite.bounds.size.x/2;
 	}
 }

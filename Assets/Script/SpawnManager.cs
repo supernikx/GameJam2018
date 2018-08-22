@@ -9,7 +9,7 @@ public class SpawnManager : MonoBehaviour {
 
     List<Obstacle> obstacleCanSpawn = new List<Obstacle>();
     Vector3 spawnPoint;
-    float spawnTimer,addTimer,fitSpawnDelay, cantRandomXSPawnPoint;
+    float spawnTimer,fitSpawnDelay, cantRandomXSPawnPoint;
     int addCounter;
     bool canSpawnFit;
 	GameManager gm;
@@ -18,7 +18,6 @@ public class SpawnManager : MonoBehaviour {
     {
 		gm = FindObjectOfType<GameManager> ();
         addCounter = 0;
-        addTimer = 0f;
         canSpawnFit = true;
         fitSpawnDelay = 0f;
         cantRandomXSPawnPoint = -100;
@@ -26,7 +25,7 @@ public class SpawnManager : MonoBehaviour {
 
 	void Update () {
         if (addCounter!=-1){
-            if (addTimer >= obstacle[addCounter].addDelay)
+			if (gm.timePassed >= obstacle[addCounter].addDelay)
             {
                 AddNewObstacle();
             }
@@ -109,7 +108,6 @@ public class SpawnManager : MonoBehaviour {
     private void FixedUpdate()
     {
         spawnTimer += Time.fixedDeltaTime;
-        addTimer += Time.fixedDeltaTime;
         fitSpawnDelay += Time.fixedDeltaTime;
     }
 

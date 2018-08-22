@@ -1,32 +1,40 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class GameManager : MonoBehaviour {
 
 	float gUnitCycle;
 	int lineNumber = 16;
+	public float tempoDis;
+	public AudioSource music;
 
 	public Transform playerTransform;
-	public GameObject backgroundPause, omegaBackgroundPause;
+	public GameObject backgroundPause, omegaBackgroundPause, bridgePrefab;
 	public GameObject[] backgrounds, omegaBackgrounds;//, omegaBackgrounds;
 	public int[] phases;
 	public GameObject pauseMenu;
 	public GameObject gameOverScreen;
+	public GameObject endScreen;
 
 	public float[] gridPositions;
 	float backgroundSpawnOffset = 0.3f, omegaBackgroundSpawnOffset = .3f;
 	float pauseTime = 5f;
 	public float timePassed = 0f;
+	SpawnManager spawnManager;
 	GameObject lastInstantiatedBackground;
 	GameObject lastInstantiatedOmegaBackground;
+	GameObject lastInstantiatedBridge;
 	GameObject backgroundToInstantiate, omegaBackgroundToInstantiate;
 	[HideInInspector]
 	public int timeBasedIndex = 0;
-	bool isGameOver, isFirstSpawnAfterPause = false;
+	bool isGameOver, isGameEnded, isFirstSpawnAfterPause = false, isFirstTimeInIf = true;
 	float backgroundWidth, gUnit;
 
 	void Awake(){
+		music.Play ();
+		spawnManager = GetComponent<SpawnManager> ();
 		backgroundWidth = backgroundPause.GetComponent<SpriteRenderer> ().sprite.bounds.size.x;
 		gUnit = backgroundWidth/lineNumber;
 		gUnitCycle = 0;
@@ -55,17 +63,21 @@ public class GameManager : MonoBehaviour {
 	void Update(){
 		timePassed += Time.deltaTime;
 		//controllo tempo per fasi
-		//se supero fase ma non pausa
+		//inizio pausa
+
 		if (timePassed >= phases [timeBasedIndex] && timeBasedIndex + 1 < phases.Length && timePassed <= phases [timeBasedIndex] + pauseTime) {
 			backgroundToInstantiate = backgroundPause;
 			omegaBackgroundToInstantiate = omegaBackgroundPause;
-			backgroundSpawnOffset = lastInstantiatedBackground.GetComponent<SpriteRenderer>().sprite.bounds.size.y/2;
+			if (isFirstTimeInIf) {
+				isFirstSpawnAfterPause = true;
+				isFirstTimeInIf = false;
+			}
 		} else if (timePassed > phases [timeBasedIndex] + pauseTime && timeBasedIndex + 1 < phases.Length) {
 			timeBasedIndex++;
 			backgroundToInstantiate = backgrounds [timeBasedIndex];
 			omegaBackgroundToInstantiate = omegaBackgrounds [timeBasedIndex];
-			backgroundSpawnOffset = .3f;
 			isFirstSpawnAfterPause = true;
+			isFirstTimeInIf = true;
 		} else{
 			backgroundToInstantiate = backgrounds [timeBasedIndex];
 			omegaBackgroundToInstantiate = omegaBackgrounds [timeBasedIndex];
@@ -74,38 +86,69 @@ public class GameManager : MonoBehaviour {
 		//cabio index ogni cambio fase
 		if (lastInstantiatedBackground.transform.position.y < -Camera.main.orthographicSize) {
 			if (isFirstSpawnAfterPause) {
-				backgroundSpawnOffset = lastInstantiatedBackground.GetComponent<SpriteRenderer> ().sprite.bounds.size.y;
+				GameObject instantiatedBridge = Instantiate (bridgePrefab, new Vector3 (0f, lastInstantiatedBackground.transform.position.y + lastInstantiatedBackground.GetComponent<SpriteRenderer> ().sprite.bounds.size.y/2, 0f), Quaternion.identity);
+				Destroy (instantiatedBridge, 8f);
+				lastInstantiatedBridge = instantiatedBridge;
 				isFirstSpawnAfterPause = false;
+				Invoke ("SwitchSpawnOnOff", 1.5f);
 			}
 			GameObject instantiatedBackground = Instantiate (backgroundToInstantiate, new Vector3(0f, lastInstantiatedBackground.transform.position.y + lastInstantiatedBackground.GetComponent<SpriteRenderer>().sprite.bounds.size.y - backgroundSpawnOffset, 0f), Quaternion.identity);
+			GameObject instantiatedOmegaBackground = Instantiate (omegaBackgroundToInstantiate, new Vector3(0f, lastInstantiatedOmegaBackground.transform.position.y + lastInstantiatedOmegaBackground.GetComponent<SpriteRenderer>().sprite.bounds.size.y - backgroundSpawnOffset, 0f), Quaternion.identity);
 			Destroy (lastInstantiatedBackground, 8f);
-			lastInstantiatedBackground = instantiatedBackground;
-			backgroundSpawnOffset = .3f;
-		}
-		if (lastInstantiatedOmegaBackground.transform.position.y <= 0f) {
-			GameObject instantiatedOmegaBackground = Instantiate (omegaBackgroundToInstantiate, new Vector3(0f, lastInstantiatedOmegaBackground.transform.position.y + lastInstantiatedOmegaBackground.GetComponent<SpriteRenderer>().sprite.bounds.size.y - omegaBackgroundSpawnOffset, 0f), Quaternion.identity);
 			Destroy (lastInstantiatedOmegaBackground, 6f);
+			lastInstantiatedBackground = instantiatedBackground;
 			lastInstantiatedOmegaBackground = instantiatedOmegaBackground;
 		}
+
+		//check omega spawn
+//		if (lastInstantiatedOmegaBackground.transform.position.y <= 0f) {
+//			GameObject instantiatedOmegaBackground = Instantiate (omegaBackgroundToInstantiate, new Vector3(0f, lastInstantiatedOmegaBackground.transform.position.y + lastInstantiatedOmegaBackground.GetComponent<SpriteRenderer>().sprite.bounds.size.y - omegaBackgroundSpawnOffset, 0f), Quaternion.identity);
+//			Destroy (lastInstantiatedOmegaBackground, 6f);
+//			lastInstantiatedOmegaBackground = instantiatedOmegaBackground;
+//		}
+
+		//pause menu
 		if (Input.GetKeyDown (KeyCode.Escape))
 			ControlMenu ();
+
+		if (timePassed >= phases [phases.Length - 1])
+			ShowEndScreen ();
 	}
 
 	public void ControlMenu(){
 		if (pauseMenu.activeSelf) {
 			pauseMenu.SetActive (false);
 			Time.timeScale = 1f;
+			music.UnPause ();
 		}
 		else if (!pauseMenu.activeSelf) {
 			pauseMenu.SetActive (true);
 			Time.timeScale = 0f;
+			music.Pause ();
 		}
 	}
 
 	public void GameOver(){
-		if (!isGameOver) {
+		if (!isGameOver && !isGameEnded) {
 			gameOverScreen.SetActive (true);
 			isGameOver = true;
+		}
+	}
+
+	void SwitchSpawnOnOff(){
+		spawnManager.enabled = !spawnManager.enabled;
+	}
+
+	void ShowEndScreen(){
+		if (!isGameEnded && !isGameOver) {
+			endScreen.SetActive (true);
+			isGameEnded = true;
+			playerTransform.GetComponent<PlayerController> ().enabled = false;
+			try{
+			playerTransform.GetComponentInChildren<CircleCollider2D> ().enabled = false;
+			}catch(Exception e){
+			playerTransform.GetComponentInChildren<BoxCollider2D> ().enabled = false;
+			}
 		}
 	}
 }

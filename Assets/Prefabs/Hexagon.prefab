@@ -110,8 +110,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c92368b0b1116e4429b3373f5710ede8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fallingSpeed: 2
-  addDelay: 0
+  fallingSpeed: 4
+  addDelay: 64
   lifeTime: 5
   type: 0
   scaleSpeed: 0.7

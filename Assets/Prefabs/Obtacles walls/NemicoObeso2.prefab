@@ -236,8 +236,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fallingSpeed: 2
-  addDelay: 59
-  lifeTime: 5
+  addDelay: 64
+  lifeTime: 8
   type: 1
   xSpawn: 0
   buttonsArray:

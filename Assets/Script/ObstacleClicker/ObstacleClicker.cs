@@ -5,8 +5,14 @@ using UnityEngine;
 public class ObstacleClicker : Obstacle {
     public int click;
     public Sprite[] sprites = new Sprite[0];
+	AudioSource death;
     private SpriteRenderer sprite;
     Rigidbody2D rb2d;
+
+	void Awake(){
+		death = GameObject.Find ("ClickerOpenAudio").GetComponent<AudioSource>();
+	}
+
     private void Start()
     {
         sprite = GetComponent<SpriteRenderer>();
@@ -20,8 +26,9 @@ public class ObstacleClicker : Obstacle {
         click++;
         if (click == sprites.Length)
         {
-            Destroy(gameObject);
-        }
+			death.Play ();
+			Destroy (gameObject);
+		}
         else
         {
             sprite.sprite = sprites[click];
