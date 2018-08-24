@@ -29,8 +29,10 @@ public class GameManager : MonoBehaviour {
 	GameObject backgroundToInstantiate, omegaBackgroundToInstantiate;
 	[HideInInspector]
 	public int timeBasedIndex = 0;
-	bool isGameOver, isGameEnded, isFirstSpawnAfterPause = false, isFirstTimeInIf = true;
-	float backgroundWidth, gUnit;
+	bool isFirstSpawnAfterPause = false, isFirstTimeInIf = true;
+    public bool isGameEnded, isGameOver;
+
+    float backgroundWidth, gUnit;
 
 	void Awake(){
 		music.Play ();

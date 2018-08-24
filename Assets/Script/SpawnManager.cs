@@ -86,7 +86,7 @@ public class SpawnManager : MonoBehaviour {
                     randomXSPawnPoint *= -1;
                 }
             }
-            spawnPoint = new Vector3(randomXSPawnPoint, Camera.main.orthographicSize, 0f);
+            spawnPoint = new Vector3(randomXSPawnPoint, Camera.main.orthographicSize, -0.1f);
             GameObject instantiatedObstacle = Instantiate(obstacleCanSpawn[randomIndex].gameObject, spawnPoint, Quaternion.identity);
             spawnTimer = 0;
             Destroy(instantiatedObstacle, instantiatedObstacle.gameObject.GetComponent<Obstacle>().lifeTime);
