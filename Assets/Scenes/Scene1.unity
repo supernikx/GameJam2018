@@ -1590,6 +1590,11 @@ Prefab:
       propertyPath: flip
       value: 
       objectReference: {fileID: 493145137}
+    - target: {fileID: 212958013871786614, guid: ce2c956b2be75544d8e4b4b2258fe32a,
+        type: 2}
+      propertyPath: m_MaskInteraction
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ce2c956b2be75544d8e4b4b2258fe32a, type: 2}
   m_IsPrefabAsset: 0
@@ -2650,6 +2655,8 @@ MonoBehaviour:
   gridPositions: []
   timePassed: 0
   timeBasedIndex: 0
+  isGameEnded: 0
+  isGameOver: 0
 --- !u!4 &1583439825 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4771480972331218, guid: ce2c956b2be75544d8e4b4b2258fe32a,

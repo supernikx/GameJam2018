@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour {
 		gUnitCycle = 0;
 		gridPositions = new float[lineNumber];
 		lastInstantiatedBackground = Instantiate (backgrounds[timeBasedIndex], Vector3.zero, Quaternion.identity);
-		lastInstantiatedOmegaBackground = Instantiate (omegaBackgrounds[timeBasedIndex], Vector3.zero, Quaternion.identity);
+		lastInstantiatedOmegaBackground = Instantiate (omegaBackgrounds[timeBasedIndex], new Vector3(0,0,-0.2f), Quaternion.identity);
 		for(int i=0;i<lineNumber;i++){
 			gridPositions[i] = -backgroundWidth / 2 + gUnitCycle;
 			gUnitCycle += gUnit;
@@ -95,7 +95,7 @@ public class GameManager : MonoBehaviour {
 				Invoke ("SwitchSpawnOnOff", 1.5f);
 			}
 			GameObject instantiatedBackground = Instantiate (backgroundToInstantiate, new Vector3(0f, lastInstantiatedBackground.transform.position.y + lastInstantiatedBackground.GetComponent<SpriteRenderer>().sprite.bounds.size.y - backgroundSpawnOffset, 0f), Quaternion.identity);
-			GameObject instantiatedOmegaBackground = Instantiate (omegaBackgroundToInstantiate, new Vector3(0f, lastInstantiatedOmegaBackground.transform.position.y + lastInstantiatedOmegaBackground.GetComponent<SpriteRenderer>().sprite.bounds.size.y - backgroundSpawnOffset, 0f), Quaternion.identity);
+			GameObject instantiatedOmegaBackground = Instantiate (omegaBackgroundToInstantiate, new Vector3(0f, lastInstantiatedOmegaBackground.transform.position.y + lastInstantiatedOmegaBackground.GetComponent<SpriteRenderer>().sprite.bounds.size.y - backgroundSpawnOffset, -0.2f), Quaternion.identity);
 			Destroy (lastInstantiatedBackground, 8f);
 			Destroy (lastInstantiatedOmegaBackground, 6f);
 			lastInstantiatedBackground = instantiatedBackground;
